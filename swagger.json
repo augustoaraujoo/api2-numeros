@@ -1,0 +1,45 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "API de Números Aleatórios",
+      "description": "API para gerar números aleatórios dentro de um intervalo especificado."
+    },
+    "paths": {
+      "/random": {
+        "get": {
+          "summary": "Gera um número aleatório dentro de um intervalo especificado.",
+          "parameters": [
+            {
+              "name": "min",
+              "in": "query",
+              "type": "integer",
+              "required": true,
+              "description": "Valor mínimo."
+            },
+            {
+              "name": "max",
+              "in": "query",
+              "type": "integer",
+              "required": true,
+              "description": "Valor máximo."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Número aleatório gerado com sucesso.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "randomValue": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
