@@ -1,45 +1,134 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0.0",
-      "title": "API de Números Aleatórios",
-      "description": "API para gerar números aleatórios dentro de um intervalo especificado."
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API"
+  },
+  "paths": {
+    "/random": {
+      "get": {
+        "summary": "Gera um número aleatório dentro de um intervalo especificado.",
+        "parameters": [
+          {
+            "name": "min",
+            "in": "query",
+            "description": "Valor mínimo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Valor máximo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Número aleatório gerado com sucesso."
+          },
+          "400": {
+            "description": "Parâmetros inválidos ou ausentes."
+          }
+        }
+      },
+      "post": {
+        "summary": "Adiciona um novo número aleatório à lista.",
+        "parameters": [
+          {
+            "name": "min",
+            "in": "body",
+            "description": "Valor mínimo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "max",
+            "in": "body",
+            "description": "Valor máximo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Número aleatório adicionado com sucesso."
+          },
+          "400": {
+            "description": "Parâmetros inválidos ou ausentes."
+          }
+        }
+      }
     },
-    "paths": {
-      "/random": {
-        "get": {
-          "summary": "Gera um número aleatório dentro de um intervalo especificado.",
-          "parameters": [
-            {
-              "name": "min",
-              "in": "query",
-              "type": "integer",
-              "required": true,
-              "description": "Valor mínimo."
-            },
-            {
-              "name": "max",
-              "in": "query",
-              "type": "integer",
-              "required": true,
-              "description": "Valor máximo."
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Número aleatório gerado com sucesso.",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "randomValue": {
-                    "type": "integer"
-                  }
-                }
-              }
-            }
+    "/random/all": {
+      "get": {
+        "summary": "Lista todos os números aleatórios gerados.",
+        "responses": {
+          "200": {
+            "description": "Lista de números aleatórios."
+          }
+        }
+      }
+    },
+    "/random/{index}": {
+      "put": {
+        "summary": "Atualiza um número aleatório na lista.",
+        "parameters": [
+          {
+            "name": "index",
+            "in": "path",
+            "description": "Índice do número aleatório a ser atualizado.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "min",
+            "in": "body",
+            "description": "Novo valor mínimo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "max",
+            "in": "body",
+            "description": "Novo valor máximo para o número aleatório.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Número aleatório atualizado com sucesso."
+          },
+          "400": {
+            "description": "Parâmetros inválidos ou ausentes."
+          },
+          "404": {
+            "description": "Índice não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclui um número aleatório da lista.",
+        "parameters": [
+          {
+            "name": "index",
+            "in": "path",
+            "description": "Índice do número aleatório a ser excluído.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Número aleatório excluído com sucesso."
+          },
+          "404": {
+            "description": "Índice não encontrado."
           }
         }
       }
     }
   }
-  
+}

@@ -39,6 +39,7 @@ app.get('/random/all', (req, res) => {
 // Rota para adicionar um novo número aleatório à lista
 app.post('/random', (req, res) => {
   const { min, max } = req.body;
+  console.log(min,max)
   if (!min || !max) {
     return res.status(400).json({ error: 'Parâmetros "min" e "max" são obrigatórios.' });
   }
